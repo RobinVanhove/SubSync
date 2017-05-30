@@ -1,2 +1,2 @@
 # SubSync
-A tool for automaticaly synchronizing .SRT subtitle files with matching video files.
+A tool for synchronizing .SRT subtitle files with matching video files automatically, using voice recognition.
