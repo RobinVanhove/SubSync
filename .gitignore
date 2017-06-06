@@ -1,5 +1,6 @@
+.config
 *.srt
 *.wav
 watson-examples/
 resources/
-.config
+
