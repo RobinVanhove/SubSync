@@ -1,10 +1,11 @@
-package subtitles_tests;
+package subtitlestests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import subtitles.SRTEntry;
+
 
 public class SRTEntryTests {
 
@@ -26,8 +27,8 @@ public class SRTEntryTests {
 	
 	@Test
 	public void toStringTest(){
-		SRTEntry entry = new SRTEntry("05:53:54,123", "05:55:34,456", "-Foo?\n-Bar!");
-		assertEquals("05:53:54,123 --> 05:55:34,456\n-Foo?\n-Bar!", entry.toString());
+		SRTEntry entry = new SRTEntry("05:53:54,123", "05:55:34,456", "-Foo?\r\n-Bar!");
+		assertEquals("05:53:54,123 --> 05:55:34,456\r\n-Foo?\r\n-Bar!", entry.toString());
 	}
 	
 	@Test

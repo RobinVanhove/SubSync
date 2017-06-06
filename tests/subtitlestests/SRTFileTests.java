@@ -1,4 +1,4 @@
-package subtitles_tests;
+package subtitlestests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import subtitles.SRTEntry;
 import subtitles.SRTFile;
+
 
 public class SRTFileTests {
 	
@@ -26,7 +27,7 @@ public class SRTFileTests {
 	
 	@Test
 	public void loadTest() throws IOException{
-			SRTFile file = SRTFile.load("test1.srt");
+			SRTFile file = SRTFile.load("tests/testresources/test1.srt");
 			assertEquals(conversation, file.toString());
 	}
 	
