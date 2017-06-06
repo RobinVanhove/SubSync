@@ -45,6 +45,8 @@ public class Config {
 		InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
 		BufferedReader br = new BufferedReader(isr);
 		while ((line = br.readLine()) != null) {
+			if(line.startsWith("#"))
+				continue;
 			String attrName = line.split("=")[0];
 			String attrValue = line.split("=")[1];
 			map.put(attrName, attrValue);
