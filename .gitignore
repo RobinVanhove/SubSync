@@ -1,3 +1,4 @@
 *.srt
+*.wav
 watson-examples/
 .config
