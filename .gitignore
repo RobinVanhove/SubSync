@@ -10,3 +10,6 @@ resources/
 
 #testing directory with watson examples
 watson-examples/
+
+#target directory
+target/
