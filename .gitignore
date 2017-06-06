@@ -1,9 +1,8 @@
 #config file with bluemix watson service username and password
 .config
 
-#testing subtitle, audio and video files
+#testing audio and video files
 resources/
-*.srt
 *.wav
 *.avi
 *.mkv
