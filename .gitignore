@@ -7,8 +7,6 @@ resources/
 *.avi
 *.mkv
 
-#testing directory with watson examples
+#directories
 watson-examples/
-
-#target directory
 target/
