@@ -1,3 +1,4 @@
 *.srt
-.project
-.classpath
+*.wav
+watson-examples/
+.config
