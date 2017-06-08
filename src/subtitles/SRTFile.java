@@ -6,8 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
-public class SRTFile extends ArrayList<SRTEntry> {
+import matching.TimedString;
+import matching.TimedStringSource;
+
+public class SRTFile extends ArrayList<SRTEntry> implements TimedStringSource{
 
 	public static SRTFile load(Path path) throws IOException {
 		byte[] encoded = Files.readAllBytes(path);
@@ -51,6 +55,25 @@ public class SRTFile extends ArrayList<SRTEntry> {
 			s += (i + 1) + "\r\n" + this.get(i).toString() + "\r\n\r\n";
 		}
 		return s;
+	}
+
+	@Override
+	public TimedString toTimedString() {
+		String implodedString = "";
+		TreeMap<Integer, Long> positionMap = new TreeMap<Integer, Long>();
+		
+		for(SRTEntry entry : this){
+			String strippedText = entry.getText().replaceAll("[^\\w\\s']","").replaceAll("\r\n", " ");
+			int timeStep = (int) ((entry.getTo() - entry.getFrom()) / (strippedText.length() - 1));
+			for(int i = 0; i < strippedText.length(); i++){
+				positionMap.put(implodedString.length(), entry.getFrom() + i * timeStep);
+				implodedString += Character.toLowerCase(strippedText.charAt(i));
+			}
+			implodedString += " ";
+			positionMap.put(implodedString.length() - 1, entry.getTo());
+		}
+		
+		return new TimedString(positionMap, implodedString.substring(0, implodedString.length() - 1));
 	}
 
 }

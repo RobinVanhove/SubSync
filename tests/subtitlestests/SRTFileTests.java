@@ -1,12 +1,15 @@
 package subtitlestests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.Test;
 
+import matching.TimedString;
 import subtitles.SRTEntry;
 import subtitles.SRTFile;
 
@@ -45,6 +48,26 @@ public class SRTFileTests {
 
 		assertEquals( conversation, file.toString());
 		
+	}
+	
+	@Test
+	public void toTimedStringTest() throws IOException{
+		SRTFile srtFile = SRTFile.load("tests/testresources/test1.srt");
+		TimedString timedString = srtFile.toTimedString();
+		assertEquals("hello it's me penguins are awesome", timedString.getImplodedString());
+		assertEquals(Long.valueOf(4814123), timedString.getPositionMap().get(0));
+		assertEquals(Long.valueOf(5058456), timedString.getPositionMap().get(34));
+		
+//		int i = 0;
+//		for(Entry<Integer, Long> entry : timedString.getPositionMap().entrySet()){
+//			try{
+//			System.out.println(timedString.getImplodedString().charAt(i) + ": " + entry.getKey() + " -->  " + entry.getValue() + " ("+ SRTEntry.timestampToString(entry.getValue()) +")");
+//			i++;
+//			}catch(StringIndexOutOfBoundsException e){
+//				System.out.println(" : " + entry.getKey() + " -->  " + entry.getValue() + " ("+ SRTEntry.timestampToString(entry.getValue()) +")");
+//
+//			}
+//		}
 	}
 
 }

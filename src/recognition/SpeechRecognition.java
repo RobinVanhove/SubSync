@@ -13,16 +13,19 @@ import main.Config;
 
 public class SpeechRecognition {
 	
-	  public static SpeechResults recognize(File audio) {
+	  public static RecognitionResults recognize(File audio) {
 		    SpeechToText service = new SpeechToText();
 		    RecognizeOptions options = new RecognizeOptions.Builder().timestamps(true).build();
 		    try {
 				service.setUsernameAndPassword(Config.getAttribute("username"), Config.getAttribute("password"));
 			} catch (NoSuchAttributeException | IOException e) {
 				e.printStackTrace();
-			}		    
-		    return service.recognize(audio, options).execute();
+			}
+
+		    return new RecognitionResults(service.recognize(audio, options).execute());
 	  }
+	  
+	  
 	  
 	  
 

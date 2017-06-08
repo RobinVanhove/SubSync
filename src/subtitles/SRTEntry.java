@@ -60,7 +60,7 @@ public class SRTEntry {
 		long m = (timestamp % (60 * 60 * 1000)) / (1000 * 60);
 		long h = (timestamp % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60);
 
-		String str = String.format("%02d:%02d:%02d,%3d", h, m, s, ms);
+		String str = String.format("%02d:%02d:%02d,%03d", h, m, s, ms);
 		return str;
 	}
 

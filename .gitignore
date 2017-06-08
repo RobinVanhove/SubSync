@@ -6,6 +6,8 @@ resources/
 *.wav
 *.avi
 *.mkv
+*.mp3
+*.mp4
 
 #directories
 watson-examples/
