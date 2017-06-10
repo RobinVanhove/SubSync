@@ -16,8 +16,10 @@ import matching.TimedStringSource;
 
 public class RecognitionResults extends TreeMap<Long, String> implements TimedStringSource{
 
+	private long offset;
+	
 	public RecognitionResults(SpeechResults sr) {
-		parseSpeechResults(sr);
+		this.parseSpeechResults(sr);
 	}
 
 	private void parseSpeechResults(SpeechResults sr) {
@@ -51,12 +53,24 @@ public class RecognitionResults extends TreeMap<Long, String> implements TimedSt
 			  Long key = entry.getKey();
 			  String value = entry.getValue();
 			  
-			  positionMap.put(implodedString.length(), key);
-			  implodedString += value + " ";
+			  positionMap.put(implodedString.length(), key + this.getOffset());
+			  implodedString += value.toLowerCase() + " ";
 			  
 			}
-		return new TimedString(positionMap, implodedString.substring(0, implodedString.length() - 1));
 		
+		if(implodedString.isEmpty())
+			return new TimedString(new TreeMap<Integer, Long>(), "");
+		else
+			return new TimedString(positionMap, implodedString.substring(0, implodedString.length() - 1));
+		
+	}
+
+	private long getOffset() {
+		return offset;
+	}
+
+	public void setOffset(long offset) {
+		this.offset = offset;
 	}
 
 	

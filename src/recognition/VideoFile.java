@@ -28,13 +28,15 @@ public class VideoFile {
 		this.file = videoFile;
 	}
 
-	public File getAudioFile() {
+	public File getAudioFile(float offset, float duration) {
 		File target = new File(AUDIO_OUTPUT_NAME+"."+AUDIO_OUTPUT_FORMAT);
 		AudioAttributes audio = new AudioAttributes();
 		audio.setCodec(this.getFormat().getToWavCodec());
 		EncodingAttributes attrs = new EncodingAttributes();
 		attrs.setFormat(AUDIO_OUTPUT_FORMAT);
 		attrs.setAudioAttributes(audio);
+		attrs.setOffset(offset / 1000);
+		attrs.setDuration(duration / 1000);
 		Encoder encoder = new Encoder();
 		try {
 			encoder.encode(this.getVideoFile(), target, attrs);

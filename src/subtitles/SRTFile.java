@@ -1,5 +1,6 @@
 package subtitles;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -13,8 +14,8 @@ import matching.TimedStringSource;
 
 public class SRTFile extends ArrayList<SRTEntry> implements TimedStringSource{
 
-	public static SRTFile load(Path path) throws IOException {
-		byte[] encoded = Files.readAllBytes(path);
+	public static SRTFile load(File file) throws IOException {
+		byte[] encoded = Files.readAllBytes(file.toPath());
 		String str = new String(encoded, Charset.forName("UTF-8"));
 		return parse(str);
 
@@ -43,7 +44,7 @@ public class SRTFile extends ArrayList<SRTEntry> implements TimedStringSource{
 	}
 
 	public static SRTFile load(String path) throws IOException {
-		return load(Paths.get(path));
+		return load(new File(path));
 
 	}
 
@@ -75,5 +76,6 @@ public class SRTFile extends ArrayList<SRTEntry> implements TimedStringSource{
 		
 		return new TimedString(positionMap, implodedString.substring(0, implodedString.length() - 1));
 	}
+
 
 }

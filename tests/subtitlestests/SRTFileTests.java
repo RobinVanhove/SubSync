@@ -58,16 +58,7 @@ public class SRTFileTests {
 		assertEquals(Long.valueOf(4814123), timedString.getPositionMap().get(0));
 		assertEquals(Long.valueOf(5058456), timedString.getPositionMap().get(34));
 		
-//		int i = 0;
-//		for(Entry<Integer, Long> entry : timedString.getPositionMap().entrySet()){
-//			try{
-//			System.out.println(timedString.getImplodedString().charAt(i) + ": " + entry.getKey() + " -->  " + entry.getValue() + " ("+ SRTEntry.timestampToString(entry.getValue()) +")");
-//			i++;
-//			}catch(StringIndexOutOfBoundsException e){
-//				System.out.println(" : " + entry.getKey() + " -->  " + entry.getValue() + " ("+ SRTEntry.timestampToString(entry.getValue()) +")");
-//
-//			}
-//		}
+		System.out.println(timedString);
 	}
 
 }
