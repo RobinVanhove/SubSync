@@ -11,8 +11,10 @@ import org.json.JSONObject;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.Transcript;
 
+import main.Converter;
 import matching.TimedString;
 import matching.TimedStringSource;
+import subtitles.SRTEntry;
 
 public class RecognitionResults extends TreeMap<Long, String> implements TimedStringSource{
 
@@ -47,6 +49,7 @@ public class RecognitionResults extends TreeMap<Long, String> implements TimedSt
 
 	@Override
 	public TimedString toTimedString() {
+		System.out.println("Fetched speech results from " + SRTEntry.timestampToString(this.getOffset()) + " to " + SRTEntry.timestampToString(this.getOffset() + Converter.FRAGMENT_LENGTH));
 		String implodedString = "";
 		TreeMap<Integer, Long> positionMap = new TreeMap<Integer, Long>();
 		for(Map.Entry<Long,String> entry : this.entrySet()) {

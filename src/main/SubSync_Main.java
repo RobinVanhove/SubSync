@@ -26,15 +26,10 @@ public class SubSync_Main {
 			System.out.println("[2]  Loading video file: tests/testresources/Game of Thrones - s01e01 - Winter Is Coming.mkv");
 			VideoFile videoFile = new VideoFile(new File("tests/testresources/Game of Thrones - s01e01 - Winter Is Coming.mkv"), VideoFormat.MKV);
 		
-			System.out.println("[3]  Reading audio from video file");
-			File audioFile = videoFile.getAudioFile(20*60*1000, 2*60*1000);
-			
-			System.out.println("[4]  Running IBm Watson voice recognition on audio");
-			RecognitionResults rr = SpeechRecognition.recognize(audioFile);
-			rr.setOffset(20*60*1000);
-			TimedString recognizedtext = rr.toTimedString();
-			
-			System.out.println(recognizedtext);
+			System.out.println("[3]  Reading audio from video file and running IBM Watson voice recognition on audio");
+			TimedString recognizedText = new Converter(videoFile).execute();			
+			System.out.println(recognizedText);
+			System.out.println(recognizedText.getImplodedString());
 			
 			
 		} catch (IOException e) {

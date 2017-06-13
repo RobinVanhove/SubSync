@@ -2,6 +2,9 @@ package matching;
 
 import java.util.Map;
 import java.util.Map.Entry;
+
+import main.Converter;
+
 import java.util.TreeMap;
 
 import subtitles.SRTEntry;
@@ -19,13 +22,50 @@ public class TimedString {
 	public int length() {
 		return this.getImplodedString().length();
 	}
+	
+	public boolean isEmpty(){
+		return this.length() == 0;
+	}
+	
+	public long from(){
+		if(!this.isEmpty())
+			return this.getPositionMap().firstEntry().getValue();
+		else
+			return 0;
+	}
+	
+	public long to(){
+		if(!this.isEmpty())
+			return this.getPositionMap().lastEntry().getValue();
+		else return 0;
+	}
 
-	public void append(TimedString other) {
-		this.getPositionMap().put(this.length() + 1, this.getPositionMap().lastEntry().getValue());
+
+	public TimedString combine(TimedString other) {
+		System.out.println("Combining speech results from " + SRTEntry.timestampToString(other.from()) + " to " + SRTEntry.timestampToString(other.to()));
+
+		TimedString newTs = this.copy();	
+		
+		if(other.isEmpty())
+			return newTs;
+		if(newTs.isEmpty())
+			return other.copy();
+		
+		newTs.getPositionMap().put(newTs.length() + 1, newTs.getPositionMap().lastEntry().getValue());
 		for (Entry<Integer, Long> e : other.getPositionMap().entrySet()) {
-			this.getPositionMap().put(e.getKey() + this.length() + 1, e.getValue());
+				newTs.getPositionMap().put(e.getKey() + newTs.length() + 1, e.getValue());
+
 		}
-		this.setImplodedString(this.getImplodedString() + " " + other.getImplodedString());
+			newTs.setImplodedString(newTs.getImplodedString() + " " + other.getImplodedString());
+		return newTs;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public TimedString copy(){
+		TimedString newTs = Identity();
+		newTs.setImplodedString(new String(this.getImplodedString()));
+		newTs.setPositionMap((TreeMap<Integer, Long>) this.getPositionMap().clone());
+		return newTs;
 	}
 
 	public String getImplodedString() {
@@ -46,6 +86,7 @@ public class TimedString {
 
 	@Override
 	public String toString() {
+
 		String str = this.getImplodedString() +"\n";
 		int i = 0;
 		for (Entry<Integer, Long> entry : this.getPositionMap().entrySet()) {
@@ -63,6 +104,10 @@ public class TimedString {
 			return "EMPTY";
 		else
 			return str;
+	}
+	
+	public static TimedString Identity(){
+		return new TimedString(new TreeMap<Integer, Long>(), "");
 	}
 
 }
