@@ -1,13 +1,11 @@
-package matching;
+package components;
 
 import java.util.Map;
 import java.util.Map.Entry;
 
-import main.Converter;
+import main.Util;
 
 import java.util.TreeMap;
-
-import subtitles.SRTEntry;
 
 public class TimedString {
 
@@ -42,7 +40,7 @@ public class TimedString {
 
 
 	public TimedString combine(TimedString other) {
-		System.out.println("Combining speech results from " + SRTEntry.timestampToString(other.from()) + " to " + SRTEntry.timestampToString(other.to()));
+		System.out.println("Combining speech results from " + Util.timestampToString(other.from()) + " to " + Util.timestampToString(other.to()));
 
 		TimedString newTs = this.copy();	
 		
@@ -88,15 +86,15 @@ public class TimedString {
 	public String toString() {
 
 		String str = this.getImplodedString() +"\n";
-		int i = 0;
+		
 		for (Entry<Integer, Long> entry : this.getPositionMap().entrySet()) {
 			try {
-				str += this.getImplodedString().charAt(i) + ": " + entry.getKey() + " -->  " + entry.getValue() + " ("
-						+ SRTEntry.timestampToString(entry.getValue()) + ")\n";
-				i++;
+				str += this.getImplodedString().charAt(entry.getKey()) + ": " + entry.getKey() + " -->  " + entry.getValue() + " ("
+						+ Util.timestampToString(entry.getValue()) + ")\n";
+				
 			} catch (StringIndexOutOfBoundsException e) {
 				str += " : " + entry.getKey() + " -->  " + entry.getValue() + " ("
-						+ SRTEntry.timestampToString(entry.getValue()) + ")\n";
+						+ Util.timestampToString(entry.getValue()) + ")\n";
 
 			}
 		}

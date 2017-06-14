@@ -1,4 +1,4 @@
-package matchingtests;
+package components;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,7 @@ import java.util.TreeMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import matching.TimedString;
+import components.TimedString;
 
 public class TimedStringTests {
 	
@@ -36,7 +36,7 @@ public class TimedStringTests {
 	}
 
 	@Test
-	public void AppendTest() {		
+	public void CombineTest() {		
 		TimedString appended = ts1.combine(ts2);
 		System.out.println(ts1);
 		assertEquals("abc def", appended.getImplodedString());
@@ -50,7 +50,7 @@ public class TimedStringTests {
 	}
 	
 	@Test
-	public void AppendTest_IdentityLastCase() {		
+	public void CombineTest_IdentityLastCase() {		
 		TimedString appended = ts1.combine(TimedString.Identity());
 		assertEquals("abc", appended.getImplodedString());
 		assertEquals(Long.valueOf(1500), appended.getPositionMap().get(1));
@@ -59,12 +59,22 @@ public class TimedStringTests {
 	}
 	
 	@Test
-	public void AppendTest_IdentityFirstCase() {		
+	public void CombineTest_IdentityFirstCase() {		
 		TimedString appended = TimedString.Identity().combine(ts1);
 		assertEquals("abc", appended.getImplodedString());
 		assertEquals(Long.valueOf(1500), appended.getPositionMap().get(1));
 		assertEquals(Long.valueOf(1600), appended.getPositionMap().get(2));
 		assertEquals(Long.valueOf(1700), appended.getPositionMap().get(3));
+	}
+	
+	@Test
+	public void CombineTest_ReverseCase(){
+		fail();
+	}
+	
+	@Test
+	public void CombineTest_BetweenCase(){
+		fail();
 	}
 	
 	

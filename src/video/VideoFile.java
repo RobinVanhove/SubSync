@@ -1,4 +1,4 @@
-package recognition;
+package video;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -10,9 +10,9 @@ import it.sauronsoftware.jave.Encoder;
 import it.sauronsoftware.jave.EncoderException;
 import it.sauronsoftware.jave.EncodingAttributes;
 import it.sauronsoftware.jave.MultimediaInfo;
-import subtitles.SRTEntry;
+import main.Util;
 
-public class VideoFile {
+class VideoFile {
 
 	private static final String AUDIO_OUTPUT_NAME = "audio";
 	private static final String AUDIO_OUTPUT_FORMAT = "wav";
@@ -34,10 +34,10 @@ public class VideoFile {
 	}
 
 	public File getAudioFile(float offset, float duration, Path tmpDir) {
-		System.out.println("Converting video to audio from " + SRTEntry.timestampToString((long) offset) + " to " + SRTEntry.timestampToString((long) (offset + duration)));
+		System.out.println("Converting video to audio from " + Util.timestampToString((long) offset) + " to " + Util.timestampToString((long) (offset + duration)));
 		File target = new File(tmpDir.toString() + "\\" + AUDIO_OUTPUT_NAME + "_" + nextFileHash() + "." + AUDIO_OUTPUT_FORMAT);
 		AudioAttributes audio = new AudioAttributes();
-		audio.setCodec(this.getFormat().getToWavCodec());
+		audio.setCodec(this.getFormat().getWavCodec());
 		EncodingAttributes attrs = new EncodingAttributes();
 		attrs.setFormat(AUDIO_OUTPUT_FORMAT);
 		attrs.setAudioAttributes(audio);
@@ -66,7 +66,7 @@ public class VideoFile {
 
 	}
 
-	private VideoFormat getFormat() {
+	public VideoFormat getFormat() {
 		return format;
 	}
 

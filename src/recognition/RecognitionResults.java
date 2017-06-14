@@ -11,12 +11,13 @@ import org.json.JSONObject;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.Transcript;
 
-import main.Converter;
-import matching.TimedString;
-import matching.TimedStringSource;
-import subtitles.SRTEntry;
+import components.Converter;
+import components.TimedString;
+import components.TimedStringSource;
+import main.Util;
 
-public class RecognitionResults extends TreeMap<Long, String> implements TimedStringSource{
+
+class RecognitionResults extends TreeMap<Long, String> implements TimedStringSource{
 
 	private long offset;
 	
@@ -26,7 +27,6 @@ public class RecognitionResults extends TreeMap<Long, String> implements TimedSt
 
 	private void parseSpeechResults(SpeechResults sr) {
 		List<Transcript> resultList = sr.getResults();
-
 		for (Transcript t : resultList) {
 			if (t.isFinal()) {
 				try {
@@ -49,7 +49,8 @@ public class RecognitionResults extends TreeMap<Long, String> implements TimedSt
 
 	@Override
 	public TimedString toTimedString() {
-		System.out.println("Fetched speech results from " + SRTEntry.timestampToString(this.getOffset()) + " to " + SRTEntry.timestampToString(this.getOffset() + Converter.FRAGMENT_LENGTH));
+		
+		System.out.println("Fetched speech results from " + Util.timestampToString(this.getOffset()));
 		String implodedString = "";
 		TreeMap<Integer, Long> positionMap = new TreeMap<Integer, Long>();
 		for(Map.Entry<Long,String> entry : this.entrySet()) {

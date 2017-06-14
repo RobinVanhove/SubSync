@@ -1,10 +1,10 @@
-package subtitlestests;
+package subtitles;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import subtitles.SRTEntry;
+import main.Util;
 
 
 public class SRTEntryTests {
@@ -33,12 +33,12 @@ public class SRTEntryTests {
 	
 	@Test
 	public void stringtoTimeStamp(){
-		assertEquals(1234567, SRTEntry.stringToTimestamp("00:20:34,567"));
+		assertEquals(1234567, Util.stringToTimestamp("00:20:34,567"));
 	}
 	
 	@Test(expected =IllegalArgumentException.class)
 	public void stringtoTimeStamp_WrongFormatCase(){
-		assertEquals(1234567, SRTEntry.stringToTimestamp("test"));
+		assertEquals(1234567, Util.stringToTimestamp("test"));
 	}
 
 

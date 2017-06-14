@@ -1,4 +1,4 @@
-package subtitlestests;
+package subtitles;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 
 import org.junit.Test;
 
-import matching.TimedString;
+import components.TimedString;
 import subtitles.SRTEntry;
 import subtitles.SRTFile;
 

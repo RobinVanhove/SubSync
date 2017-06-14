@@ -8,10 +8,10 @@ import javax.naming.directory.NoSuchAttributeException;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.SpeechToText;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognizeOptions;
 
+import components.Converter;
 import main.Config;
-import main.Converter;
 
-public class SpeechRecognition {
+class IBMWatsonRecognizer{
 	
 	  public static RecognitionResults recognize(File audio) {
 		    SpeechToText service = new SpeechToText();
@@ -21,9 +21,10 @@ public class SpeechRecognition {
 			} catch (NoSuchAttributeException | IOException e) {
 				e.printStackTrace();
 			} catch ( com.ibm.watson.developer_cloud.service.exception.BadRequestException e){
-				System.out.println("No speech found in this of fragment");
+				System.out.println("Maybe no speech found in this fragment?");
+				e.printStackTrace();
 			}
-
+		    
 		    return new RecognitionResults(service.recognize(audio, options).execute());
 	  }
 	  

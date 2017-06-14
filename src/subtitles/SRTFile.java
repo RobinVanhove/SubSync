@@ -9,10 +9,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import matching.TimedString;
-import matching.TimedStringSource;
+import components.TimedString;
+import components.TimedStringSource;
 
-public class SRTFile extends ArrayList<SRTEntry> implements TimedStringSource{
+class SRTFile extends ArrayList<SRTEntry> implements TimedStringSource{
 
 	public static SRTFile load(File file) throws IOException {
 		byte[] encoded = Files.readAllBytes(file.toPath());

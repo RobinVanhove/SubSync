@@ -1,19 +1,27 @@
 
-
-
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import components.ComponentsTestSuite;
+import main.MainTestSuite;
+import recognition.RecognitionTestSuite;
+import subtitles.SubtitlesTestSuite;
 
-import maintests.MainTestSuite;
-import speechrecognitiontests.RecognitionTestSuite;
-import subtitlestests.SubtitlesTestSuite;
+import video.VideoTestSuite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         MainTestSuite.class,
         SubtitlesTestSuite.class,
-        RecognitionTestSuite.class
+        RecognitionTestSuite.class,
+        ComponentsTestSuite.class,
+        VideoTestSuite.class
 })
 
-
-public class ProjectTestSuite {}
+public class ProjectTestSuite {	
+	
+	@BeforeClass
+	public static void init(){
+		RecognitionTestSuite.init();
+	}
+}

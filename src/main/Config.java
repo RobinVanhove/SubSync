@@ -72,6 +72,8 @@ public class Config {
 
 	public static void setConfigPath(String configPath) {
 		Config.configPath = configPath;
+		instance = null;
+
 	}
 	
 	

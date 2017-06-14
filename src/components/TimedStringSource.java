@@ -1,4 +1,4 @@
-package matching;
+package components;
 
 public interface TimedStringSource {
 	
