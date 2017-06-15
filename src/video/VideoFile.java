@@ -46,6 +46,7 @@ class VideoFile {
 		Encoder encoder = new Encoder();
 		try {
 			encoder.encode(this.getVideoFile(), target, attrs);
+			
 		} catch (IllegalArgumentException | EncoderException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import components.TimedString;
-import recognition.RecognitionResults;
+import recognition.IBMWatsonSpeechResults;
 import recognition.IBMWatsonRecognizer;
 
 public class RecognitionResultsTests {

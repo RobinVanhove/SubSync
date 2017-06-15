@@ -27,6 +27,7 @@ public class VideoFileTests {
 	public void getAudioFileTest() throws IOException {
 		VideoFile vf = new VideoFile(new File("tests/testresources/Game of Thrones - s01e01 - Winter Is Coming.mkv"), VideoFormat.MKV);
 		File audioFile = vf.getAudioFile(0f*1000, 5.0f * 60f*1000, Files.createTempDirectory("SubSync_test_tmp"));
+		assertTrue(audioFile.delete());
 	}
 	
 	@Test

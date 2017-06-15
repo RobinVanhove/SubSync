@@ -8,7 +8,7 @@ import components.TimedString;
 import video.Video;
 
 
-public class SubSync_Main {
+class SubSync_Main {
 
 	public static void main(String args[]) {
 		run();

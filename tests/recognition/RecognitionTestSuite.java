@@ -21,7 +21,7 @@ public class RecognitionTestSuite {
 	private static final String REAL_CONFIG_LOCATION = ".config";
 
 	
-	public static RecognitionResults rr;
+	public static IBMWatsonSpeechResults rr;
 	
 	@BeforeClass
 	public static void init(){

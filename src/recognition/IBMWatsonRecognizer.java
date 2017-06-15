@@ -13,9 +13,15 @@ import main.Config;
 
 class IBMWatsonRecognizer{
 	
-	  public static RecognitionResults recognize(File audio) {
+	  public static IBMWatsonSpeechResults recognize(File audio) {
 		    SpeechToText service = new SpeechToText();
-		    RecognizeOptions options = new RecognizeOptions.Builder().timestamps(true).inactivityTimeout((int) (Converter.FRAGMENT_LENGTH / 1000)).build();
+		    
+		    RecognizeOptions options = new RecognizeOptions.Builder()
+		    								.timestamps(true)
+		    								.inactivityTimeout((int) (Converter.FRAGMENT_LENGTH / 1000))
+		    								.profanityFilter(false)
+		    								.build();
+		    
 		    try {
 				service.setUsernameAndPassword(Config.getAttribute("username"), Config.getAttribute("password"));
 			} catch (NoSuchAttributeException | IOException e) {
@@ -25,7 +31,7 @@ class IBMWatsonRecognizer{
 				e.printStackTrace();
 			}
 		    
-		    return new RecognitionResults(service.recognize(audio, options).execute());
+		    return new IBMWatsonSpeechResults(service.recognize(audio, options).execute());
 	  }
 	  
 	  

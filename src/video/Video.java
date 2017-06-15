@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import components.AudioFile;
-import components.VideoFacade;
+import components.interfaces.VideoFacade;
 
 public class Video implements VideoFacade{
 	
@@ -29,7 +29,9 @@ public class Video implements VideoFacade{
 			System.err.println("Could not create auio write directory");
 			e.printStackTrace();
 		}
-		return new AudioFile(this.videoFile.getAudioFile(from, to - from, tempDir), from, to);
+		AudioFile af =  new AudioFile(this.videoFile.getAudioFile(from, to - from, tempDir), from, to);
+		System.out.println(af.getFile().getAbsolutePath());
+		return af;
 	}
 
 	@Override

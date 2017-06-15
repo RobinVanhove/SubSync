@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 import components.TimedString;
-import components.TimedStringSource;
+import components.interfaces.TimedStringSource;
 
 class SRTFile extends ArrayList<SRTEntry> implements TimedStringSource{
 

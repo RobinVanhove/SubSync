@@ -1,6 +1,8 @@
-package components;
+package components.interfaces;
 
 import java.io.File;
+
+import components.AudioFile;
 
 public interface VideoFacade {
 	

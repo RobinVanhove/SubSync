@@ -13,15 +13,15 @@ import com.ibm.watson.developer_cloud.speech_to_text.v1.model.Transcript;
 
 import components.Converter;
 import components.TimedString;
-import components.TimedStringSource;
+import components.interfaces.TimedStringSource;
 import main.Util;
 
 
-class RecognitionResults extends TreeMap<Long, String> implements TimedStringSource{
+class IBMWatsonSpeechResults extends TreeMap<Long, String> implements TimedStringSource{
 
 	private long offset;
 	
-	public RecognitionResults(SpeechResults sr) {
+	public IBMWatsonSpeechResults(SpeechResults sr) {
 		this.parseSpeechResults(sr);
 	}
 

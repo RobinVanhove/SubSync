@@ -1,4 +1,6 @@
-package components;
+package components.interfaces;
+
+import components.TimedString;
 
 public interface TimedStringSource {
 	
