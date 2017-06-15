@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import components.ComponentsTestSuite;
 import main.MainTestSuite;
+import matching.MatchingTestSuite;
 import recognition.RecognitionTestSuite;
 import subtitles.SubtitlesTestSuite;
 
@@ -15,7 +16,8 @@ import video.VideoTestSuite;
         SubtitlesTestSuite.class,
         RecognitionTestSuite.class,
         ComponentsTestSuite.class,
-        VideoTestSuite.class
+        VideoTestSuite.class,
+        MatchingTestSuite.class
 })
 
 public class ProjectTestSuite {	

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-public class LongestCommonSubstring {
+class LongestCommonSubstring {
 
 	private String s1, s2;
 	private int positionInS1, length;
